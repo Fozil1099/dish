@@ -1,15 +1,15 @@
 import $axios from "@/libs/axios"
 import { defineStore } from 'pinia'
-import { Items, Params } from '@/types/recipes'
+import { Items, Params, Recipes } from '@/types/recipes'
 
 
 export default defineStore('recipes', {
   state: () => ({
-    recipes: [] as Items[],
+    recipes: {} as Recipes,
     params: {
-      title: '',
+      search: '',
       page: 1,
-      limit: 15,
+      page_size: 15,
     } as Params,
     oneRecipe: {} as Items,
   }),
@@ -17,12 +17,19 @@ export default defineStore('recipes', {
     async FETCH_RECIPES(params: Params) {
       const { data } = await $axios.get('recipe/', { params })
 
-      this.recipes = data
+      if (params.page > 1) {
+        this.recipes.results.push(data)
+      } else {
+        this.recipes = data
+      }
     },
     async FETCH_ONE_RECIPE(id: string | string[]) {
       const { data } = await $axios.get(`recipe/${id}`)
 
       this.oneRecipe = data
+    },
+    async CREATE_RECIPE(data: FormData) {
+      await $axios.post(`recipe/`, data)
     },
   },
 })

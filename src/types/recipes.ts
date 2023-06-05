@@ -6,8 +6,22 @@ export type Items =  {
   id: number
 }
 
+export type Recipes =  {
+  count: number
+  next: number
+  page_size: number
+  results: Items[]
+  total_pages: number
+}
+
 export type Params =  {
   page: number
-  limit: number
-  title: string
+  page_size: number
+  search: string
+}
+
+export type Form = {
+  title: string,
+  photo:  Blob | string,
+  description: string
 }

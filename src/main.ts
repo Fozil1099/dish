@@ -12,10 +12,10 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 // import specific icons
-import { faMagnifyingGlass, faHouse, faUser, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faMagnifyingGlass, faHouse, faUser, faPlus, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 // add icons to the library
-library.add(faMagnifyingGlass, faHouse, faUser, faPlus)
+library.add(faMagnifyingGlass, faHouse, faUser, faPlus, faChevronDown)
 
 // create store
 const pinia = createPinia()

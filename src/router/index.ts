@@ -15,12 +15,20 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       isMain: false,
     },
-    component: () => import('@/views/Details/RecipeDetail.vue'),
+    component: () => import('@/views/RecipeDetail.vue'),
+  },
+  {
+    path: '/add/',
+    name: 'add',
+    meta: {
+      isMain: false,
+    },
+    component: () => import('@/views/AddRecipe.vue'),
   },
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory('/'),
   routes,
 })
 

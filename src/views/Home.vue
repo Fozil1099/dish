@@ -5,7 +5,7 @@
         <div class="main__body">
           <div class="card-container">
             <div
-              v-for="(item, index) in store.recipes"
+              v-for="(item, index) in store.recipes.results"
               :key="index"
               class="card"
               @click="$router.push({ name: 'detail', params: {
@@ -25,12 +25,14 @@
         </div>
       </div>
     </div>
-    <div class="button__position text-center py-2">
+    <div class="text-center py-2">
       <button
+        v-if="store.recipes.next"
         type="button"
         class="add__btn btn btn-outline-secondary"
+        @click="loadNextPage"
       >
-        <FontAwesomeIcon icon="fa-solid fa-plus" />
+        <FontAwesomeIcon icon="fa-solid fa-chevron-down" />
       </button>
     </div>
   </div>
@@ -52,7 +54,13 @@ function refresh(): void {
   }
 }
 
-  
+const loadNextPage = () => {
+  if(store.recipes.next) {
+    store.params.page = store.recipes.next
+    refresh()
+  }
+}
+
 watch(store.params, debounce(() => {
   refresh()
 }, 500))

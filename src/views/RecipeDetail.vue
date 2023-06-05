@@ -35,6 +35,5 @@ try {
   store.FETCH_ONE_RECIPE(route.params.id)
 } catch (error) {
   throw error
-  
 }
 </script>
